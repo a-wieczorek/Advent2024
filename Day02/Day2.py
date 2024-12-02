@@ -31,7 +31,6 @@ def analyse_reports(data: list) -> (int, list):
                     gen_subs()
                     break
                 state = 'increasing'
-
         if isSafe:
             safeReps.append(1)
         else:
