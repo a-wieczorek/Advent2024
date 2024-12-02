@@ -41,8 +41,10 @@ def analyse_reports(data: list) -> (int, list):
     return safeReps, retryRows
 
 
+# Part1
 res, retry = analyse_reports(data)
 print(f'{sum(res)}')
+# Part2
 res2, _ = analyse_reports(retry)
 out = [max(res2[i:i + 3]) for i in range(0, len(res2), 3)]
 print(f'{sum(res) + sum(out)}')
