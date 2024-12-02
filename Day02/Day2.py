@@ -3,6 +3,11 @@ with open('Input.txt', 'r') as f:
 
 
 def analyse_reports(data: list) -> (int, list):
+    def gen_subs():
+        retryRows.append(row[:max(i - 2, 0)] + row[i - 1:])
+        retryRows.append(row[:i - 1] + row[i:])
+        retryRows.append(row[:i] + row[i + 1:])
+
     safeReps = []
     retryRows = []
     for row in data:
@@ -13,29 +18,25 @@ def analyse_reports(data: list) -> (int, list):
             curr = row[i]
             if not 1 <= abs(int(prev) - int(curr)) <= 3:
                 isSafe = False
-                retryRows.append(row[:max(i - 2, 0)] + row[i - 1:])
-                retryRows.append(row[:i-1] + row[i:])
-                retryRows.append(row[:i] + row[i+1:])
+                gen_subs()
                 break
             if curr < prev:
                 if state == 'increasing':
                     isSafe = False
-                    retryRows.append(row[:max(i - 2, 0)] + row[i - 1:])
-                    retryRows.append(row[:i - 1] + row[i:])
-                    retryRows.append(row[:i] + row[i+1:])
+                    gen_subs()
                     break
                 state = 'decreasing'
             else:
                 if state == 'decreasing':
                     isSafe = False
-                    retryRows.append(row[:max(i - 2, 0)] + row[i - 1:])
-                    retryRows.append(row[:i - 1] + row[i:])
-                    retryRows.append(row[:i] + row[i+1:])
+                    gen_subs()
                     break
                 state = 'increasing'
 
         if isSafe:
             safeReps.append(1)
+        else:
+            safeReps.append(0)
     return safeReps, retryRows
 
 
