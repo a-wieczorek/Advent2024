@@ -7,7 +7,6 @@ def analyse_reports(data: list) -> (int, list):
         retryRows.append(row[:max(i - 2, 0)] + row[i - 1:])
         retryRows.append(row[:i - 1] + row[i:])
         retryRows.append(row[:i] + row[i + 1:])
-
     safeReps = []
     retryRows = []
     for row in data:
