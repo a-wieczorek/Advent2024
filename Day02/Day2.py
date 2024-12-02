@@ -36,8 +36,6 @@ def analyse_reports(data: list) -> (int, list):
 
         if isSafe:
             safeReps.append(1)
-        else:
-            safeReps.append(0)
     return safeReps, retryRows
 
 
