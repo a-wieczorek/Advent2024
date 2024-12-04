@@ -6,21 +6,18 @@ def check_part1(x: int, y: int, xDelta: int, yDelta: int) -> bool:
     if x + xDelta * 3 < 0 or x + xDelta * 3 >= len(data) \
             or y + yDelta * 3 < 0 or y + yDelta * 3 >= len(data[0]):
         return False
-    else:
-        if data[x + xDelta][y + yDelta] == 'M' \
-                and data[x + xDelta * 2][y + yDelta * 2] == 'A' \
-                and data[x + xDelta * 3][y + yDelta * 3] == 'S':
-            return True
-        else:
-            return False
+    if data[x + xDelta][y + yDelta] == 'M' \
+            and data[x + xDelta * 2][y + yDelta * 2] == 'A' \
+            and data[x + xDelta * 3][y + yDelta * 3] == 'S':
+        return True
+    return False
 
 
 def check_part2(x: int, y: int, xDelta: int, yDelta: int):
     if data[x + xDelta][y + yDelta] + data[x - xDelta][y - yDelta] in ['MS', 'SM'] \
             and data[x + yDelta][y - xDelta] + data[x - yDelta][y + xDelta] in ['MS', 'SM']:
         return True
-    else:
-        return False
+    return False
 
 
 # Part1
