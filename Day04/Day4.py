@@ -2,7 +2,7 @@ with open('Input.txt', 'r') as f:
     data = [[col for col in row] for row in f.read().split('\n') if row]
 
 
-def check_part1(x, y, xDelta, yDelta) -> bool:
+def check_part1(x: int, y: int, xDelta: int, yDelta: int) -> bool:
     if x + xDelta * 3 < 0 or x + xDelta * 3 >= len(data) \
             or y + yDelta * 3 < 0 or y + yDelta * 3 >= len(data[0]):
         return False
@@ -15,7 +15,7 @@ def check_part1(x, y, xDelta, yDelta) -> bool:
             return False
 
 
-def check_part2(x, y, xDelta, yDelta):
+def check_part2(x: int, y: int, xDelta: int, yDelta: int):
     if data[x + xDelta][y + yDelta] + data[x - xDelta][y - yDelta] in ['MS', 'SM'] \
             and data[x + yDelta][y - xDelta] + data[x - yDelta][y + xDelta] in ['MS', 'SM']:
         return True
