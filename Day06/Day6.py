@@ -16,14 +16,7 @@ class Guard:
 
     def step(self) -> bool:
         def turn() -> None:
-            if self.direction == '^':
-                self.direction = '>'
-            elif self.direction == '>':
-                self.direction = 'v'
-            elif self.direction == 'v':
-                self.direction = '<'
-            else:
-                self.direction = '^'
+            self.direction = {'^': '>', '>': 'v', 'v': '<', '<': '^'}[self.direction]
             return
 
         def get_new_coords() -> tuple:
