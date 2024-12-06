@@ -15,10 +15,6 @@ class Guard:
         return {(row, col) for row, col, _ in self.history}
 
     def step(self) -> bool:
-        def turn() -> None:
-            self.direction = {'^': '>', '>': 'v', 'v': '<', '<': '^'}[self.direction]
-            return
-
         def get_new_coords() -> tuple:
             if self.direction == '^':
                 coords = (self.row - 1, self.col)
@@ -41,7 +37,7 @@ class Guard:
                 self.row, self.col = newCoords
                 return True
             else:
-                turn()
+                self.direction = {'^': '>', '>': 'v', 'v': '<', '<': '^'}[self.direction]
 
 
 # Part1
