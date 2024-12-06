@@ -4,13 +4,12 @@ with open('Input.txt', 'r') as f:
 
 
 class Guard:
-    def __init__(self, row: int, col: int, aMap: list[list]):
+    def __init__(self, row: int, col: int):
         self.startRow = row
         self.startCol = col
         self.row = row
         self.col = col
-        self.aMap = aMap
-        self.history = []
+        self.history = set()
         self.direction = '^'
 
     @property
@@ -19,7 +18,7 @@ class Guard:
 
     def step(self) -> bool:
         def check_out_of_room(row: int, col: int) -> bool:
-            return row < 0 or row >= len(self.aMap) or col < 0 or col >= len(self.aMap[0])
+            return row < 0 or row >= len(roomMap) or col < 0 or col >= len(roomMap[0])
 
         def turn() -> None:
             if self.direction == '^':
@@ -43,14 +42,14 @@ class Guard:
                 coords = (self.row, self.col - 1)
             return coords
 
-        self.history.append((self.row, self.col, self.direction))
+        self.history.add((self.row, self.col, self.direction))
         while True:
             newCoords = get_new_coords()
 
             if check_out_of_room(newCoords[0], newCoords[1]):
                 return False
 
-            if self.aMap[newCoords[0]][newCoords[1]] != '#':
+            if roomMap[newCoords[0]][newCoords[1]] != '#':
                 self.row, self.col = newCoords
                 return True
             else:
@@ -66,7 +65,7 @@ for i, row in enumerate(data):
         guardStartCol = row.index('^')
         break
 roomMap[guardStartRow][guardStartCol] = '.'
-guard = Guard(guardStartRow, guardStartCol, roomMap)
+guard = Guard(guardStartRow, guardStartCol)
 inRoom = True
 while inRoom:
     inRoom = guard.step()
@@ -81,14 +80,14 @@ for row, col in visitedCoords:
     counter += 1
     if row == guardStartRow and col == guardStartCol:
         continue
-    newMap = [[col[:] for col in row] for row in roomMap[:]]
-    newMap[row][col] = '#'
-    guard = Guard(guardStartRow, guardStartCol, newMap)
+    roomMap[row][col] = '#'
+    guard = Guard(guardStartRow, guardStartCol)
     inRoom = True
     while inRoom:
         inRoom = guard.step()
-        if guard.history[-1] in guard.history[:-1]:
+        if (guard.row, guard.col, guard.direction) in guard.history:
             possibleLoops += 1
             break
+    roomMap[row][col] = '.'
     print(f"{counter}/{len(visitedCoords)}")
 print(possibleLoops)
