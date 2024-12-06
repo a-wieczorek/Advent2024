@@ -5,8 +5,6 @@ with open('Input.txt', 'r') as f:
 
 class Guard:
     def __init__(self, row: int, col: int):
-        self.startRow = row
-        self.startCol = col
         self.row = row
         self.col = col
         self.history = set()
