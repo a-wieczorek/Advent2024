@@ -15,7 +15,6 @@ class Guard:
         return {(row, col) for row, col, _ in self.history}
 
     def step(self) -> bool:
-
         def turn() -> None:
             if self.direction == '^':
                 self.direction = '>'
