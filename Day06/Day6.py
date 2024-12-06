@@ -73,9 +73,7 @@ print(len(visitedCoords))
 
 # Part2 ~10sec
 possibleLoops = 0
-counter = 0
 for row, col in visitedCoords:
-    counter += 1
     if row == guardStartRow and col == guardStartCol:
         continue
     roomMap[row][col] = '#'
@@ -87,5 +85,4 @@ for row, col in visitedCoords:
             possibleLoops += 1
             break
     roomMap[row][col] = '.'
-    print(f"{counter}/{len(visitedCoords)}")
-print(f'\nPart1\n{len(visitedCoords)}\n\nPart2\n{possibleLoops}')
+print(possibleLoops)
