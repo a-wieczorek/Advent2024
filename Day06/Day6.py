@@ -64,7 +64,6 @@ guard = Guard(guardStartRow, guardStartCol)
 inRoom = True
 while inRoom:
     inRoom = guard.step()
-
 visitedCoords = guard.visited
 print(len(visitedCoords))
 
