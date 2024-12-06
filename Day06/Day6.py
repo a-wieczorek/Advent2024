@@ -17,8 +17,6 @@ class Guard:
         return {(row, col) for row, col, _ in self.history}
 
     def step(self) -> bool:
-        def check_out_of_room(row: int, col: int) -> bool:
-            return row < 0 or row >= len(roomMap) or col < 0 or col >= len(roomMap[0])
 
         def turn() -> None:
             if self.direction == '^':
@@ -46,7 +44,7 @@ class Guard:
         while True:
             newCoords = get_new_coords()
 
-            if check_out_of_room(newCoords[0], newCoords[1]):
+            if newCoords[0] not in range(0, len(roomMap)) or newCoords[1] not in range(0, len(roomMap[0])):
                 return False
 
             if roomMap[newCoords[0]][newCoords[1]] != '#':
@@ -73,7 +71,7 @@ while inRoom:
 visitedCoords = guard.visited
 print(len(visitedCoords))
 
-# Part2
+# Part2 ~10sec
 possibleLoops = 0
 counter = 0
 for row, col in visitedCoords:
@@ -85,9 +83,9 @@ for row, col in visitedCoords:
     inRoom = True
     while inRoom:
         inRoom = guard.step()
-        if (guard.row, guard.col, guard.direction) in guard.history:
+        if inRoom and (guard.row, guard.col, guard.direction) in guard.history:
             possibleLoops += 1
             break
     roomMap[row][col] = '.'
     print(f"{counter}/{len(visitedCoords)}")
-print(possibleLoops)
+print(f'\nPart1\n{len(visitedCoords)}\n\nPart2\n{possibleLoops}')
