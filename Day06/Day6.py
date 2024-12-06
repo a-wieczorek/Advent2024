@@ -57,6 +57,7 @@ class Guard:
                 turn()
 
 
+# Part1
 guardStartRow = 0
 guardStartCol = 0
 for i, row in enumerate(data):
@@ -73,6 +74,7 @@ while inRoom:
 visitedCoords = guard.visited
 print(len(visitedCoords))
 
+# Part2
 possibleLoops = 0
 counter = 0
 for row, col in visitedCoords:
