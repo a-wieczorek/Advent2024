@@ -27,8 +27,8 @@ for frequencySymbol in frequencySymbols:
         for j in range(i + 1, len(frequencies)):
             # Part1
             rowDistance, colDistance = frequencies[i].coord_distance(frequencies[j])
-            if (x := frequencies[i].row + rowDistance*2) in range(0, len(data)) \
-                    and (y := frequencies[i].col + colDistance*2) in range(0, len(data[0])):
+            if (x := frequencies[i].row + rowDistance * 2) in range(0, len(data)) \
+                    and (y := frequencies[i].col + colDistance * 2) in range(0, len(data[0])):
                 antinodesPart1.add((x, y))
 
             if (x := frequencies[i].row - rowDistance) in range(0, len(data)) \
