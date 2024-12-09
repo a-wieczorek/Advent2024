@@ -55,4 +55,3 @@ for file in reversed(files):
             freeSpace.locations = freeSpace.locations[len(file.locations):]
             break
 print(sum(fil.checksum_value() for fil in files))
-
