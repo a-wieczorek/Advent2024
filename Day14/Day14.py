@@ -73,6 +73,3 @@ aMap = [[' '] * mapWidth for _ in range(mapHeight)]
 for robot in robots2:
     aMap[robot.row][robot.col] = '*'
 print(str(i + 1) + '\n' + '\n'.join([''.join(row) for row in aMap]))
-x = '\n'.join([''.join(row) for row in aMap])
-
-
