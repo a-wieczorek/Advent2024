@@ -28,10 +28,6 @@ class Robot:
             self.col = newCol - mapWidth
         else:
             self.col = mapWidth + newCol
-        #aMap = [['.'] * mapWidth for _ in range(mapHeight)]
-        #aMap[self.row][self.col] = '1'
-        #print('\n'.join([''.join(row) for row in aMap]))
-        #print('\n')
         return
 
     @property
