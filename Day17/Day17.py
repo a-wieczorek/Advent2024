@@ -50,7 +50,6 @@ class Computer:
 computer = Computer(regA, regB, regC)
 i = 0
 while i + 1 in range(len(instructions)):
-    print({'A': computer.regA, 'B': computer.regB, 'C': computer.regC})
     i = computer.process(i)
 
 print(','.join([str(out) for out in computer.output]))
